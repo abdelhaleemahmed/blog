@@ -1,0 +1,13 @@
+locale = "en"
+label = "English"
+weight = 1
+title = "My Blog"
+
+[params]
+  displayName = "EN"
+  isoCode = "en"
+  rtl = false
+  dateFormat = "2 January 2006"
+  description = "Notes on computers & technology."
+  [params.author]
+    name = "Ahmed"

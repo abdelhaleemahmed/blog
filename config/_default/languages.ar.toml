@@ -1,0 +1,13 @@
+locale = "ar"
+label = "العربية"
+weight = 2
+title = "مدوّنتي"
+
+[params]
+  displayName = "ع"
+  isoCode = "ar"
+  rtl = true
+  dateFormat = "2 January 2006"
+  description = "ملاحظات في الحاسوب والتقنية."
+  [params.author]
+    name = "أحمد"

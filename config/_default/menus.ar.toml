@@ -1,0 +1,12 @@
+[[main]]
+  name = "المقالات"
+  pageRef = "posts"
+  weight = 10
+[[main]]
+  name = "التصنيفات"
+  pageRef = "categories"
+  weight = 20
+[[main]]
+  name = "الوسوم"
+  pageRef = "tags"
+  weight = 30
