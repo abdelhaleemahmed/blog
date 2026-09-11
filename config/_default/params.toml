@@ -25,7 +25,7 @@ disableTextInHeader = false
 # backgroundImageWidth = 1200
 
 defaultBackgroundImage = "images/v3/site-background.svg"
-backgroundCanvas = true # render defaultBackgroundImage as a fixed backdrop on every page
+backgroundCanvas = false # animated background off (was the moving maze)
 defaultFeaturedImage = "/img/featured.svg"
 defaultSocialImage = "/img/blowfish_banner.png"
 hotlinkFeatureImage = false
