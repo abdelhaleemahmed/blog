@@ -53,7 +53,7 @@ fingerprintAlgorithm = "sha512" # Valid values are "sha512" (default), "sha384",
 
 [homepage]
   layout = "page" # valid options: page, profile, hero, card, background, landing, custom
-  layoutSwitcher = true # opt-in interactive preview of the built-in layouts
+  layoutSwitcher = false # theme playground widget off
   # homepageImage = "/img/iceland.jpg" # used in: hero, and card
   showRecent = true
   showRecentItems = 12
