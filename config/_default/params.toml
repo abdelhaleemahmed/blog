@@ -26,7 +26,7 @@ disableTextInHeader = false
 
 defaultBackgroundImage = "images/v3/site-background.svg"
 backgroundCanvas = false # animated background off (was the moving maze)
-defaultFeaturedImage = "/img/featured.svg"
+defaultFeaturedImage = ""
 defaultSocialImage = "/img/blowfish_banner.png"
 hotlinkFeatureImage = false
 # imagePosition = "50% 50%"
@@ -59,7 +59,7 @@ fingerprintAlgorithm = "sha512" # Valid values are "sha512" (default), "sha384",
   showRecentItems = 12
   showMoreLink = true
   showMoreLinkDest = "docs"
-  cardView = true
+  cardView = false
   cardViewScreenWidth = false
   layoutBackgroundBlur = true # only used when layout equals background
   disableHeroImageFilter = false # only used when layout equals hero
@@ -109,7 +109,7 @@ fingerprintAlgorithm = "sha512" # Valid values are "sha512" (default), "sha384",
   showCards = true
   orderByWeight = true
   groupByYear = false
-  cardView = true
+  cardView = false
   cardViewScreenWidth = false
   constrainItemsWidth = false
   featureImageHover = false
@@ -135,7 +135,7 @@ fingerprintAlgorithm = "sha512" # Valid values are "sha512" (default), "sha384",
   showLikes = false
   showTableOfContents = true
   groupByYear = false
-  cardView = true
+  cardView = false
   cardViewScreenWidth = false
 
 [firebase]
