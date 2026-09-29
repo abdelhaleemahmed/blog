@@ -44,34 +44,14 @@ networks:
 وهذا الملف نفسه أمام كل مُشرف افتراضي، تشغيلاً تجريبياً، كما خرج بالضبط. ولاحظ أن
 لا شيء هنا جدول تحويل — كل مُشرف يبني شيئه الأصلي:
 
-```console
-$ vmctl -p virtualbox import web-01.yaml --policy nearest
-Dry-run mode.  Commands that would be executed:
-    1: VBoxManage createvm --name web-01 --ostype Ubuntu22_LTS_64 --register
-    2: VBoxManage modifyvm web-01 --memory 8192 --vram 16 --cpus 4 --firmware efi64 ...
-    4: VBoxManage createmedium disk --filename ~/VirtualBox VMs/web-01/web-01_system.vdi --size 51200 --format VDI --variant Standard
-    7: VBoxManage modifyvm web-01 --natpf1 ssh,tcp,,2222,,22
+![VirtualBox: الملف نفسه يصير أحد عشر أمراً من VBoxManage](images/vmctl-1-virtualbox.png)
 
-$ vmctl -p libvirt import web-01.yaml --policy nearest
-Dry-run mode.  Commands that would be executed:
-    2: qemu-img create -f qcow2 ~/.local/share/libvirt/images/web-01_system.qcow2 51200M
-    3: write /tmp/web-01.xml (1080 bytes)
-    4: virsh define /tmp/web-01.xml
+![libvirt: قرص qcow2 ووثيقة XML للنطاق، ولا شيء عجز عن حمله](images/vmctl-2-libvirt.png)
 
-$ vmctl -p qemu import web-01.yaml --policy nearest
-Warning: guest_os: ubuntu22.04 was not applied (QEMU has no guest OS field; it boots
-         what the disk contains)
-Dry-run mode.  Commands that would be executed:
-    2: qemu-img create -f qcow2 ~/.local/share/vmctl/qemu/web-01/web-01_system.qcow2 51200M
-    3: write ~/.local/share/vmctl/qemu/web-01/run.sh (629 bytes)
+![QEMU المجرّد: مجلّد فيه سطر أوامر قابل للتنفيذ](images/vmctl-3-qemu.png)
 
-$ vmctl -p vmware import web-01.yaml --policy nearest
-Warning: networks[0].port_forwards: tcp *:2222 -> guest:22 was not applied (VMware has
-         no per-VM port forwarding; its NAT forwards live in the host-wide vmnetnat.conf)
-Dry-run mode.  Commands that would be executed:
-    2: vmware-vdiskmanager -q -c -s 51200MB -a lsilogic -t 0 ~/Documents/Virtual Machines/web-01/web-01_system.vmdk
-    3: write ~/Documents/Virtual Machines/web-01/web-01.vmx (930 bytes)
-```
+![VMware: قرص VMDK وملف ‎.vmx، وأمران اضطر أن يقول إنه لا يستطيعهما](images/vmctl-4-vmware.png)
+
 
 يحصل VirtualBox على قرص VDI وقاعدة تمرير منفذ في NAT. ويحصل libvirt على qcow2
 ووثيقة XML للنطاق. ويحصل QEMU المجرّد على مجلّد فيه سطر أوامر قابل للتنفيذ — فلهذا
@@ -119,18 +99,7 @@ VirtualBox سبعاً، و libvirt و QEMU اثنتين لكلٍّ، و VMware �
 التدوينة الأولى كانت: صِف ← عايِن ← طبّق. وما كان ناقصاً هو ما يحدث بعد ثلاثة
 أسابيع، حين ينقر أحدهم شيئاً في واجهة رسومية:
 
-```console
-$ vmctl diff web-01 web-01.yaml
-web-01 vs web-01.yaml: 1 changed
-  ~ memory.mb  vm 8192  file 16384
-
-$ vmctl apply web-01.yaml --execute
-web-01 differs from the file in 1 place(s)
-  ~ memory.mb  vm 8192  file 16384
-Applied web-01.yaml to 'web-01'
-    1: write /tmp/web-01.xml (1269 bytes)
-    2: virsh define /tmp/web-01.xml
-```
+![vmctl diff ثم apply: الحقل الذي انحرف وحده](images/vmctl-5-drift.png)
 
 يُغيّر ``apply`` **ما انحرف فقط**، لا الجهاز كله، ولن يُعيد إنشاء قرص يملكه الجهاز
 أصلاً. وهذا الجزء الأخير كان عِلّة يوماً، وعِلّة مكلّفة: نسخة مبكّرة من ``edit``
@@ -192,6 +161,11 @@ provider: libvirt
 [ok  ] connection works: yes, 0 domain(s)
 [--  ] domain type: qemu (emulated)
 ```
+
+ويُجيب ``providers`` عن النصف الآخر — ما تستطيع هذه الآلة قيادته أصلاً، وأيّها
+سيختار vmctl:
+
+![vmctl providers على مضيف Windows: VirtualBox و VMware قابلان للاستخدام](images/vmctl-6-providers.png)
 
 ويُثبت ``selftest`` أن المُشرف الافتراضي يوافق vmctl، بإنشاء جهاز زائل واستخدامه ثم
 حذفه — عشر فحوص، على عتاد حقيقي، في ثوانٍ.
