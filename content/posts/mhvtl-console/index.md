@@ -219,5 +219,5 @@ The package is still called `mhvtl-gui` — that is the upgrade path for hosts t
 have one. The program calls itself `mhvtl-console`.
 
 How it is built, the rule that held the browser and the terminal together, and the Linux
-kernel bug it turned up along the way are a longer piece of their own, which I will put up
-separately.
+kernel bug it turned up along the way are a longer piece of their own:
+[**Inside mhvtl-console**]({{< ref "mhvtl-console-inside" >}}).
